@@ -1,26 +1,534 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
+@custom-variant dark (&:is(.dark *));
+
+/* Updated color tokens to use Flexirent brand colors: Black and #e2fee2 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: oklch(1 0 0); /* #ffffff */
+  --foreground: oklch(0.15 0 0); /* Black */
+  --card: #e2fee2; /* #e2fee2 */
+  --card-foreground: oklch(0.15 0 0); /* Black */
+  --popover: oklch(1 0 0); /* #ffffff */
+  --popover-foreground: oklch(0.15 0 0); /* Black */
+  --primary: oklch(0.15 0 0); /* Black */
+  --primary-foreground: oklch(1 0 0); /* #ffffff */
+  --secondary: oklch(0.97 0.02 142); /* #e2fee2 */
+  --secondary-foreground: oklch(0.15 0 0); /* Black */
+  --muted: oklch(0.97 0.02 142); /* #e2fee2 */
+  --muted-foreground: oklch(0.4 0 0); /* Dark gray */
+  --accent: oklch(0.97 0.02 142); /* #e2fee2 */
+  --accent-foreground: oklch(0.15 0 0); /* Black */
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.01 142); /* Light green border */
+  --input: oklch(0.97 0.02 142); /* #e2fee2 */
+  --ring: oklch(0.15 0 0); /* Black */
+  --chart-1: oklch(0.15 0 0); /* Black */
+  --chart-2: oklch(0.97 0.02 142); /* #e2fee2 */
+  --chart-3: oklch(0.4 0 0); /* Dark gray */
+  --chart-4: oklch(0.97 0.02 142); /* #e2fee2 */
+  --chart-5: oklch(1 0 0); /* #ffffff */
+  --radius: 0.75rem;
+  --sidebar: oklch(1 0 0); /* #ffffff */
+  --sidebar-foreground: oklch(0.15 0 0); /* Black */
+  --sidebar-primary: oklch(0.15 0 0); /* Black */
+  --sidebar-primary-foreground: oklch(1 0 0); /* #ffffff */
+  --sidebar-accent: oklch(0.97 0.02 142); /* #e2fee2 */
+  --sidebar-accent-foreground: oklch(0.15 0 0); /* Black */
+  --sidebar-border: oklch(0.9 0.01 142); /* Light green border */
+  --sidebar-ring: oklch(0.15 0 0); /* Black */
 }
 
+.dark {
+  --background: oklch(0.15 0 0);
+  --foreground: oklch(0.97 0.02 142);
+  --card: oklch(0.2 0 0);
+  --card-foreground: oklch(0.97 0.02 142);
+  --popover: oklch(0.15 0 0);
+  --popover-foreground: oklch(0.97 0.02 142);
+  --primary: oklch(0.97 0.02 142);
+  --primary-foreground: oklch(0.15 0 0);
+  --secondary: oklch(0.2 0 0);
+  --secondary-foreground: oklch(0.97 0.02 142);
+  --muted: oklch(0.2 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.97 0.02 142);
+  --accent-foreground: oklch(0.15 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.3 0 0);
+  --input: oklch(0.2 0 0);
+  --ring: oklch(0.97 0.02 142);
+  --chart-1: oklch(0.97 0.02 142);
+  --chart-2: oklch(0.15 0 0);
+  --chart-3: oklch(0.7 0 0);
+  --chart-4: oklch(0.2 0 0);
+  --chart-5: oklch(0.15 0 0);
+  --sidebar: oklch(0.2 0 0);
+  --sidebar-foreground: oklch(0.97 0.02 142);
+  --sidebar-primary: oklch(0.97 0.02 142);
+  --sidebar-primary-foreground: oklch(0.15 0 0);
+  --sidebar-accent: oklch(0.15 0 0);
+  --sidebar-accent-foreground: oklch(0.97 0.02 142);
+  --sidebar-border: oklch(0.3 0 0);
+  --sidebar-ring: oklch(0.97 0.02 142);
+}
+
+/* Updated font variables to use Instrument fonts */
 @theme inline {
+  --font-serif: var(--font-instrument-serif);
+  --font-sans: var(--font-instrument-sans);
+  --font-mono: var(--font-geist-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Added smooth scroll behavior and enhanced animations */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes floatBenefit {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-5px) rotate(0.5deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-0.5deg);
+  }
+}
+
+/* Added stair-like animation for mobile menu items */
+@keyframes stairAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(30px) translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+}
+
+.stair-animation {
+  opacity: 0;
+  animation: stairAnimation 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.8s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.8s ease-out;
+}
+
+.animate-benefit-float {
+  animation: floatBenefit 6s ease-in-out infinite;
+}
+
+.animate-benefit-float:nth-child(even) {
+  animation-delay: -3s;
+}
+
+/* Noise effect for #e2fee2 backgrounds */
+.noise-bg {
+  position: relative;
+  background-color: #e2fee2;
+}
+
+.noise-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.4) 1px, transparent 0);
+  background-size: 8px 8px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Stronger grain effect for mobile navigation */
+.grain-bg {
+  position: relative;
+  background-color: #e2fee2;
+}
+
+.grain-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.5) 1px, transparent 0),
+    radial-gradient(circle at 3px 3px, rgba(0, 0, 0, 0.3) 1px, transparent 0);
+  background-size: 6px 6px, 12px 12px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Scroll stacking animation styles */
+.scroll-stack {
+  position: sticky;
+  top: 100px;
+}
+
+/* Awwward style image placeholders */
+.image-placeholder {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  border: 2px dashed #d0d0d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.image-placeholder:hover {
+  border-color: #bbb;
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+}
+
+/* Updated creative card animations to remove shadows and pop effects */
+.card-creative {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: none;
+}
+
+.card-creative:hover {
+  transform: translateY(-4px) rotate(1deg);
+  box-shadow: none;
+}
+
+.card-creative:nth-child(even):hover {
+  transform: translateY(-4px) rotate(-1deg);
+}
+
+/* Staggered animation for benefits cards */
+.benefits-stagger {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.benefits-stagger:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.benefits-stagger:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.benefits-stagger:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Adding staggered grid layout for desktop benefits */
+.benefits-staggered-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.benefits-column {
+  position: relative;
+}
+
+.benefits-column-left .stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.benefits-column-left .stagger-2 {
+  animation-delay: 0.3s;
+  margin-top: 2rem;
+}
+
+.benefits-column-left .stagger-3 {
+  animation-delay: 0.5s;
+  margin-top: 4rem;
+}
+
+.benefits-column-right .stagger-4 {
+  animation-delay: 0.2s;
+  margin-top: 3rem;
+}
+
+.benefits-column-right .stagger-5 {
+  animation-delay: 0.4s;
+  margin-top: 1rem;
+}
+
+.benefits-column-right .stagger-6 {
+  animation-delay: 0.6s;
+  margin-top: 2rem;
+}
+
+/* Mobile tab toggle styles */
+.benefits-mobile-tabs {
+  position: relative;
+}
+
+.benefits-tab {
+  background: transparent;
+  color: #666;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.benefits-tab-active {
+  background: #e2fee2;
+  color: #000;
+  font-weight: 600;
+}
+
+/* Horizontal carousel styles */
+.benefits-carousel-container {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+}
+
+.benefits-carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.benefits-carousel-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.benefits-carousel-track {
+  display: flex;
+  gap: 1rem;
+  height: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 1rem;
+}
+
+.benefits-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.benefits-carousel-card {
+  flex: 0 0 280px;
+  height: fit-content;
+}
+
+/* Scroll-triggered carousel animation */
+@keyframes carouselSlide {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.carousel-trigger {
+  animation: carouselSlide 0.6s ease-out forwards;
+}
+
+/* Hero parallax section styles */
+.hero-parallax-section {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.hero-content {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Soft reveal animation for hero section */
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-reveal {
+  animation: heroReveal 1.2s ease-out forwards;
+}
+
+/* Parallax movement on scroll */
+@media (prefers-reduced-motion: no-preference) {
+  .parallax-bg {
+    transform: translateY(var(--scroll-offset, 0));
+  }
+
+  .parallax-content {
+    transform: translateY(calc(var(--scroll-offset, 0) * 0.5));
+  }
+}
+
+/* Enhanced floating animation for benefit cards */
+.benefit-float {
+  animation: floatBenefit 8s ease-in-out infinite;
+}
+
+.benefit-float:nth-child(odd) {
+  animation-delay: -2s;
+}
+
+.benefit-float:nth-child(even) {
+  animation-delay: -6s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .benefits-staggered-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .benefits-column-left .stagger-2,
+  .benefits-column-left .stagger-3,
+  .benefits-column-right .stagger-4,
+  .benefits-column-right .stagger-5,
+  .benefits-column-right .stagger-6 {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-parallax-section {
+    background-attachment: scroll;
+  }
+
+  .benefits-carousel-card {
+    flex: 0 0 250px;
+  }
 }

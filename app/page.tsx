@@ -1,103 +1,132 @@
-import Image from "next/image";
 
-export default function Home() {
+
+import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
+import { Card, CardContent } from "@/components/ui/card"
+import Image from "next/image"
+import { BenefitsSection } from "@/components/home/benefits-section"
+import { Hero } from "@/components/home/hero"
+import { SurveyCta } from "@/components/home/survey-cta"
+
+export default function HomePage() {
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <Hero/>
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background to-accent/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-foreground mb-6">How It Works</h2>
+            <p className="font-sans text-xl text-muted-foreground max-w-3xl mx-auto">
+              Simple steps to transform your rent payment experience
+            </p>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <div className="space-y-32">
+            <div className="scroll-stack">
+              <Card className="bg-background border-2 border-border md:card-creative">
+                <CardContent className="">
+                  <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="">
+                      <Image
+                        src="/step1.jpg"
+                        alt="signup"
+                        height={500}
+                        width={500}
+                        className="w-full rounded-xl object-cover"
+                      />
+                    </div>
+                    <div className="animate-slide-in-right">
+                      <h3 className="font-serif text-3xl font-semibold text-foreground mb-6">1. Tenants sign up.</h3>
+                      <p className="font-sans text-lg text-muted-foreground leading-relaxed">
+                        Create an account, connect your preferred payment method, and set your monthly rent schedule.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="scroll-stack">
+              <Card className="bg-background border-2 border-border card-creative">
+                <CardContent className="">
+                  <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="animate-slide-in-right lg:order-2">
+                      <Image
+                        src="/step2.jpg"
+                        alt="Happy landlord"
+                        height={500}
+                        width={500}
+                        className="w-full rounded-xl object-cover"
+                      />
+                    </div>
+                    <div className="animate-slide-in-left lg:order-1">
+                      <h3 className="font-serif text-3xl font-semibold text-foreground mb-6">
+                        2. Landlords receive full rent on time.
+                      </h3>
+                      <p className="font-sans text-lg text-muted-foreground leading-relaxed">
+                        We disburse the agreed yearly rent to the landlord on the renewal date in time
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="scroll-stack">
+              <Card className="bg-background border-2 border-border card-creative">
+                <CardContent className="">
+                  <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="animate-slide-in-left">
+                      <Image
+                        src="/step3.jpg"
+                        alt="signup"
+                        height={500}
+                        width={500}
+                        className="w-full rounded-xl object-cover"
+                      />
+                    </div>
+                    <div className="animate-slide-in-right">
+                      <h3 className="font-serif text-3xl font-semibold text-foreground mb-6">3. Everyone relaxes.</h3>
+                      <p className="font-sans text-lg text-muted-foreground leading-relaxed">
+                        No more lump-sum panic. No more late-payment uncertainty.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      </section>
+
+      <BenefitsSection />
+
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-parallax-section">
+        {/* Background Image/Video Placeholder */}
+        <div className="absolute inset-0 hero-background">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/Night_cityscape.jpeg"
+            alt="hero-img"
+            height={500}
+            width={700}
+            className="w-full h-full object-cover"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+
+        {/* Dark Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+        {/* Content */}
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 hero-content">
+          <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 text-balance leading-tight max-w-5xl mx-auto">
+            Flexirent is building Africa's most reliable rent-payment network.
+          </h2>
+        </div>
+      </section>
+      <SurveyCta/>
+      <Footer />
     </div>
-  );
+  )
 }
