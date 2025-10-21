@@ -9,7 +9,7 @@ import { ArrowLeft, ArrowRight, CheckCircle, Loader2 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { SearchableDropdown } from "@/components/searchable-dropdown"
 import { CountryCodeSelector } from "@/components/country-code-selector"
-import { formatMoney, parseMoney, validateStepData } from "@/lib/survey-utils"
+import { formatMoney, parseMoney, validateStepData, validateWhatsApp } from "@/lib/survey-utils"
 import Image from "next/image"
 
 type UserRole = "tenant" | "landlord" | "both" | "other"
@@ -168,10 +168,12 @@ export default function SurveyPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          ...surveyData,
-          whatsapp: `${surveyData.countryCode}${parseMoney(surveyData.whatsapp)}`,
-        }),
+          body: JSON.stringify({
+            ...surveyData,
+            whatsapp: surveyData.whatsapp
+              ? `${surveyData.countryCode}${parseMoney(surveyData.whatsapp)}`
+              : "",
+          }),
       })
 
       if (response.ok) {
@@ -814,7 +816,7 @@ function StepRenderer({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">WhatsApp Number *</label>
+              <label className="block text-sm font-medium mb-2">WhatsApp Number <span className="text-muted-foreground font-normal">(Optional)</span></label>
               <CountryCodeSelector
                 countryCode={surveyData.countryCode || "+234"}
                 phoneNumber={surveyData.whatsapp}
@@ -832,7 +834,10 @@ function StepRenderer({
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back
             </Button>
-            <Button onClick={onNext} disabled={!surveyData.email || !surveyData.whatsapp}>
+            <Button 
+              onClick={onNext} 
+              disabled={!surveyData.email || (surveyData.whatsapp && !validateWhatsApp(surveyData.whatsapp))}
+            >
               Continue
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>

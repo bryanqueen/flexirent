@@ -9,7 +9,7 @@ export function validateStepData(data: any, stepKey: string, role: string | null
       amount: ["rentAmount"],
       pain: ["painLevel"],
       interest: ["tenantInterest"],
-      contact: ["email", "whatsapp"],
+      contact: ["email"], // WhatsApp removed as it's optional
       closing: [],
     },
     landlord: {
@@ -19,7 +19,7 @@ export function validateStepData(data: any, stepKey: string, role: string | null
       practice: ["currentPaymentPractice"],
       challenges: ["challenges"],
       interest: ["landlordInterest"],
-      contact: ["email", "whatsapp"],
+      contact: ["email"], // WhatsApp removed as it's optional
       closing: [],
     },
     both: {
@@ -28,7 +28,7 @@ export function validateStepData(data: any, stepKey: string, role: string | null
       frequency: ["bothRentFrequency"],
       challenges: ["bothChallenges"],
       interest: ["bothInterest"],
-      contact: ["email", "whatsapp"],
+      contact: ["email"], // WhatsApp removed as it's optional
       closing: [],
     },
     other: {
@@ -36,7 +36,7 @@ export function validateStepData(data: any, stepKey: string, role: string | null
       location: ["businessLocation"],
       challenge: ["biggestChallenge"],
       interest: ["otherInterest"],
-      contact: ["email", "whatsapp"],
+      contact: ["email"], // WhatsApp removed as it's optional
       closing: [],
     },
   };
@@ -54,20 +54,21 @@ export function validateStepData(data: any, stepKey: string, role: string | null
   // Validate fields for the current step
   const roleKey = (role || "").toLowerCase();
   const stepFields = stepFieldMap[roleKey]?.[stepKey] || [];
-  for (const field of stepFields) {
-    // Use same logic as validateSurveyData for each field
-    if (field === "email") {
-      if (!data.email) errors.push({ field: "email", message: "Email is required" });
-      else if (!validateEmail(data.email)) errors.push({ field: "email", message: "Please enter a valid email address" });
-    } else if (field === "whatsapp") {
-      if (!data.whatsapp) errors.push({ field: "whatsapp", message: "WhatsApp number is required" });
-      else if (!validateWhatsApp(data.whatsapp)) errors.push({ field: "whatsapp", message: "Please enter a valid Nigerian phone number" });
-    } else if (!data[field]) {
-      // Generic required field
-      errors.push({ field, message: "This field is required" });
+    for (const field of stepFields) {
+      // Use same logic as validateSurveyData for each field
+      if (field === "email") {
+        if (!data.email) errors.push({ field: "email", message: "Email is required" });
+        else if (!validateEmail(data.email)) errors.push({ field: "email", message: "Please enter a valid email address" });
+      } else if (!data[field]) {
+        // Generic required field
+        errors.push({ field, message: "This field is required" });
+      }
     }
-  }
-  return { isValid: errors.length === 0, errors };
+    // WhatsApp is optional, but if provided must be valid
+    if (data.whatsapp && !validateWhatsApp(data.whatsapp)) {
+      errors.push({ field: "whatsapp", message: "Please enter a valid Nigerian phone number" });
+    }
+    return { isValid: errors.length === 0, errors };
 }
 export interface FieldError {
   field?: string
@@ -108,9 +109,8 @@ export function validateSurveyData(data: any): SurveyValidation {
     errors.push({ field: "email", message: "Please enter a valid email address" })
   }
 
-  if (!data.whatsapp) {
-    errors.push({ field: "whatsapp", message: "WhatsApp number is required" })
-  } else if (!validateWhatsApp(data.whatsapp)) {
+  // WhatsApp validation only if number is provided
+  if (data.whatsapp && !validateWhatsApp(data.whatsapp)) {
     errors.push({ field: "whatsapp", message: "Please enter a valid Nigerian phone number" })
   }
 
