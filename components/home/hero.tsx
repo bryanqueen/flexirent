@@ -9,8 +9,8 @@ export function Hero(){
     const router = useRouter()
     return(
         <section className="noise-bg pb-20 pt-24 px-4 lg:px-8 flex items-center">
-        <div className="max-w-7xl mx-auto lg:px-8 w-full">
-          <div className="relative rounded-3xl overflow-hidden flex items-center justify-center">
+        <div className="max-w-7xl mx-auto lg:px-8 w-full ">
+          <div className="relative rounded-3xl overflow-hidden flex items-center justify-center h-[80vh]">
             <div className="absolute inset-0 z-0">
               <Image src="/hero-image2.png" alt="hero-img" className="object-cover" priority fill />
               <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/65"></div>

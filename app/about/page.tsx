@@ -37,8 +37,9 @@ export default function AboutPage() {
   }
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-background">
+    <>
       <Navigation />
+      <div ref={containerRef} className="min-h-screen bg-background overflow-x-hidden">
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
@@ -239,7 +240,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <p className="font-sans text-lg text-muted-foreground">This is the promise of Flexirent—</p>
+            <p className="font-sans text-lg text-muted-foreground">This is the promise of Flexirent</p>
             <p className="font-serif text-3xl font-bold text-foreground">
               Stability. Empowerment. A fairer future for housing.
             </p>
@@ -303,7 +304,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              Rent shouldn't shatter dreams or strain families—
+              Rent shouldn't shatter dreams or strain families
             </motion.p>
             <motion.h2
               className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white text-balance leading-tight drop-shadow-lg"
@@ -358,7 +359,8 @@ export default function AboutPage() {
         </div>
       </motion.section>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   )
 }
