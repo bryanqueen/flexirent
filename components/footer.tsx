@@ -49,7 +49,7 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="font-serif text-xl font-semibold text-foreground">Get in Touch</h3>
             <div className="space-y-4">
-              <p className="font-sans text-muted-foreground">hello@flexirent.ng</p>
+              <p className="font-sans text-muted-foreground">joseph@flexirent.app</p>
               <p className="font-sans text-muted-foreground">+2347032073459</p>
               <p className="font-sans text-muted-foreground">Lagos, Nigeria</p>
             </div>
